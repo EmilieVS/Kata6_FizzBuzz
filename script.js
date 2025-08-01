@@ -68,17 +68,31 @@ const twoSum = (numbers, target) => {
 
 
 // function isValid : seulement besoin de tester si on a (), [] ou {}
+// non : s'assurer que les deux éléments sont présents mais que si on en passe un autre : invalid
+// Récupérer le premier puis le deuxième. 
+// S'assurer qu'il n'y en pas d'autre
+
 
 const isValid = (string) => {
 
-    if (string.includes("()") || string.includes("{}") || string.includes("[]")) {
-    return true;
-  } else {
-    return false;
-  }
+    const pair = [] // Stocker les éléments dans un tableau vide
+
+    for (let el of string) {
+        if (el === '(' || el === '{' || el === '[') { // Si on a un el d'ouverture : push dans le tableau
+            pair.push('el');
+        }
+        else if (el === ')' || el === '}' || el === ']') { // si élément de fermeture : enlever. Deuxième élément !
+            const secondElement = pair.pop();
+        }
+
     }
 
+    return pair.length === 0 // liste doit être vide à la fin = pair fermée
 
-const str = '()';
-console.log(isValid(str)); // ça marche ...mais ça fonctionne aussi pour '(){'  :-(
+
+}
+
+
+const str = '[]';
+console.log(isValid(str));
 
